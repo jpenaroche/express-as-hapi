@@ -1,3 +1,3 @@
-import TaskService, {ITask} from './tasks';
+import TaskService from './tasks';
 
-export {TaskService, ITask};
+export {TaskService};

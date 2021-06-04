@@ -1,6 +1,7 @@
 import {Request, Response} from 'express';
 import {error} from '@lib';
-import {ITask, TaskService} from '../../services';
+import {TaskService} from '../../services';
+import {ITask} from '../../repositories';
 import {IContext} from 'main';
 
 export default async (
@@ -9,7 +10,7 @@ export default async (
   res: Response
 ): Promise<Response<ITask | null>> => {
   const service = new TaskService(ctx.mongoClient);
-  const task = await service.findById(req.params.id);
+  const task = await service.get(req.params.id);
   if (!task)
     throw new error.NotFoundError(
       `There is no task with id: "${req.params.id}"`

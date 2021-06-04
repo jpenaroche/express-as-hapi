@@ -1,14 +1,25 @@
-import {Db} from 'mongodb';
-import {mongo} from '@lib';
+import {Db, FilterQuery} from 'mongodb';
+import {ITask, TaskRepository} from '../repositories';
 
-export interface ITask {
-  name: string;
-  description: string;
-  when: Date;
-}
-
-export default class TaskService extends mongo.BaseService<ITask> {
+export default class TaskService {
+  protected repository;
   constructor(client: Db) {
-    super(client, 'tasks');
+    this.repository = new TaskRepository(client);
+  }
+
+  list(query: FilterQuery<ITask>) {
+    return this.repository.find(query);
+  }
+
+  get(id: string) {
+    return this.repository.findById(id);
+  }
+
+  del(id: string) {
+    return this.repository.deleteOne(id);
+  }
+
+  create(data: ITask) {
+    return this.repository.create(data);
   }
 }

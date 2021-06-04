@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import {IRouteValidationSchema} from '.';
-import {ITask} from '../services';
+import {ITask} from '../repositories';
 
 export const payloadTaskSchema = Joi.object<ITask>({
   name: Joi.string().required(),

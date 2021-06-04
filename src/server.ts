@@ -1,11 +1,12 @@
 import express, {Express} from 'express';
 import {common} from '@config';
 import api from './api';
-import {middleware} from '@lib';
+import {logger, middleware} from '@lib';
 import {json, urlencoded} from 'body-parser';
 import {IContext} from 'main';
 
-const register = (ctx: IContext, app: Express): Express => {
+export const register = (ctx: IContext): Express => {
+  const app = express();
   // parse application/x-www-form-urlencoded
   app.use(urlencoded({extended: false}));
   // parse application/json
@@ -28,12 +29,8 @@ export const run = (ctx: IContext) => {
   const localPort = Number(port || 3000);
   const localhost = host ?? 'localhost';
 
-  const app = register(ctx, express());
-
   //Register all applications and launch server
-  app.listen(localPort, localhost, () => {
-    console.log(`Listening through port: ${localPort}`);
+  register(ctx).listen(localPort, localhost, () => {
+    logger.info(`Listening through port: ${localPort}`);
   });
-
-  return app;
 };

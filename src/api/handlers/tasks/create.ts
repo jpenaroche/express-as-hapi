@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';
-import {ITask, TaskService} from '../../services';
+import {TaskService} from '../../services';
+import {ITask} from '../../repositories';
 import {IContext} from 'main';
 
 export default async (

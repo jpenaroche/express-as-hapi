@@ -11,7 +11,7 @@ export interface IContext {
   config: typeof config;
 }
 
-const bootstrap = async (): Promise<IContext> => {
+export const bootstrap = async (): Promise<IContext> => {
   const mongoClient = await mongo.getClient(
     config.database as mongo.IMongoParams
   );
