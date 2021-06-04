@@ -1,0 +1,33 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "types":[
+    "node"
+  ],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@build":[
+        "build/*"
+      ],
+      "@config":[
+        "config"
+      ],
+      "@lib":[
+        "lib"
+      ]
+    },
+    "lib": [
+      "ES2019"
+    ],
+    "esModuleInterop": true,
+    "alwaysStrict": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "rootDir": ".",
+    "outDir": "build",
+    "experimentalDecorators": true
+  },
+  "include": [
+    "src/**/*.ts",
+  ]
+}

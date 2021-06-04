@@ -1,0 +1,7 @@
+.clinic
+.vscode
+.env
+build
+static
+node_modules
+logs
