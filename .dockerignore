@@ -1,0 +1,12 @@
+node_modules
+.env
+.gitignore
+build
+.gitignore
+Dockerfile
+.dockerignore
+.clinic
+.vscode
+.git
+logs
+static
