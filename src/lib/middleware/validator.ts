@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
 import {AnySchema, ObjectSchema, ValidationOptions} from 'joi';
-import {BadRequest} from '../errors';
+import {BadRequest} from '../error';
 
 export type IRequestSchema = ObjectSchema<{
   body?: AnySchema;

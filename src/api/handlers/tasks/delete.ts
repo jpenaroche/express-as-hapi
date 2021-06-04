@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import {ITask, TaskService} from '../../services';
 import {IContext} from 'main';
-import {errors} from '@lib';
+import {error} from '@lib';
 
 export default async (
   ctx: IContext,
@@ -11,8 +11,7 @@ export default async (
   const id = req.params.id;
   const service = new TaskService(ctx.mongoClient);
   const task = await service.findById(id);
-  if (!task)
-    throw new errors.NotFoundError(`There is no task with id: "${id}"`);
+  if (!task) throw new error.NotFoundError(`There is no task with id: "${id}"`);
   await service.deleteOne(id);
 
   return res.json({id});

@@ -1,6 +1,6 @@
 require('module-alias/register');
 import {run} from './server';
-import {errors} from '@lib';
+import {error} from '@lib';
 import {mongo} from '@lib';
 import {Db} from 'mongodb';
 import * as config from '@config';
@@ -29,9 +29,9 @@ process.on('unhandledRejection', (reason: Error) => {
   throw reason;
 });
 
-process.on('uncaughtException', (error: Error) => {
-  errors.ErrorHandler.handleError(error);
-  if (!errors.ErrorHandler.isTrustedError(error)) {
+process.on('uncaughtException', (err: Error) => {
+  error.ErrorHandler.handleError(err);
+  if (!error.ErrorHandler.isTrustedError(err)) {
     // eslint-disable-next-line no-process-exit
     process.exit(1);
   }

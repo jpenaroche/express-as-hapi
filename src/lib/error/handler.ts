@@ -1,4 +1,4 @@
-import {logger, errors} from '@lib';
+import {logger, error} from '@lib';
 
 export class ErrorHandler {
   public static async handleError(err: Error): Promise<void> {
@@ -9,9 +9,9 @@ export class ErrorHandler {
     //Extends for more behavior like notifications via email, etc...
   }
 
-  public static isTrustedError(error: Error) {
-    if (error instanceof errors.BaseError) {
-      return error.isOperational;
+  public static isTrustedError(err: Error) {
+    if (err instanceof error.BaseError) {
+      return err.isOperational;
     }
     return false;
   }

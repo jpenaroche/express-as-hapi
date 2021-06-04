@@ -1,6 +1,6 @@
-import {errors} from '@lib';
+import {error} from '@lib';
 import {NextFunction, Request, Response} from 'express';
-import {BaseError} from 'lib/errors';
+import {BaseError} from 'lib/error';
 
 export default async (
   err: Error,
@@ -8,9 +8,9 @@ export default async (
   res: Response,
   _next: NextFunction
 ) => {
-  await errors.ErrorHandler.handleError(err);
+  await error.ErrorHandler.handleError(err);
 
-  if (!errors.ErrorHandler.isTrustedError(err)) {
+  if (!error.ErrorHandler.isTrustedError(err)) {
     return res
       .status(500)
       .send('Something got Wrong. Please contact tech support');
